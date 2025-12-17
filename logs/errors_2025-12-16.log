@@ -1,0 +1,1 @@
+2025-12-16 04:15:56 | ERROR    | mvp_email:send_damage_report_email:177 - Failed to send email: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-42fa8b9b750sm31251306f8f.42 - gsmtp')

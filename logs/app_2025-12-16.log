@@ -1,0 +1,87 @@
+2025-12-16 04:13:59 | INFO     | src.pipeline:__init__:92 - RoofDamagePipeline created
+2025-12-16 04:13:59 | INFO     | src.pipeline:_initialize:99 - Initializing pipeline components...
+2025-12-16 04:13:59 | INFO     | src.detection.base_detector:__init__:62 - RoofDetector initialized (device: cpu)
+2025-12-16 04:13:59 | INFO     | src.detection.base_detector:__init__:62 - DamageDetector initialized (device: cpu)
+2025-12-16 04:13:59 | INFO     | src.pipeline:_initialize:137 - Pipeline initialized
+2025-12-16 04:14:01 | INFO     | src.image_ingestion.geocoder:geocode_zipcode:157 - Geocoded 75201: center=(32.7904, -96.8044)
+2025-12-16 04:14:01 | WARNING  | src.image_ingestion.image_fetcher:calculate_tile_grid:174 - Area too large (2832048 tiles). Limiting to 500 tiles for accuracy. Consider using a smaller zipcode or area.
+2025-12-16 04:14:01 | INFO     | src.image_ingestion.image_fetcher:calculate_tile_grid:185 - Tile grid: 14x33 = 462 tiles (zoom=21, no overlap)
+2025-12-16 04:14:01 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:318 - Fetching 462 tiles...
+2025-12-16 04:15:12 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:347 - Successfully fetched 462/462 tiles
+2025-12-16 04:15:12 | INFO     | src.image_ingestion.image_stitcher:stitch:141 - Scaling output by 0.97x to 8192x3475
+2025-12-16 04:15:12 | INFO     | src.image_ingestion.image_stitcher:stitch:144 - Creating canvas: 8192x3475
+2025-12-16 04:15:15 | INFO     | src.image_ingestion.image_stitcher:stitch:200 - Placed 462/462 tiles
+2025-12-16 04:15:15 | INFO     | src.detection.roof_detector:detect:307 - Large image (8192x3475), processing in 1280x1280 chunks
+2025-12-16 04:15:15 | INFO     | src.detection.roof_detector:_load_model:114 - Loading roof detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\roof_detector.pt
+2025-12-16 04:15:17 | INFO     | src.detection.roof_detector:_load_model:126 - Roof detection model loaded on cpu
+2025-12-16 04:15:46 | INFO     | src.detection.roof_detector:detect:379 - Detected 16 roofs after chunk processing
+2025-12-16 04:15:46 | INFO     | src.detection.damage_detector:_load_model:161 - Loading damage detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\damage_detector.pt
+2025-12-16 04:15:46 | INFO     | src.detection.damage_detector:_load_model:170 - Damage detection model loaded on cpu
+2025-12-16 04:15:48 | INFO     | src.output.json_generator:create_result:273 - Generated result for 75201: 16 roofs, 4 damages
+2025-12-16 04:15:48 | INFO     | src.output.json_generator:save_json:284 - Saved JSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840548.json
+2025-12-16 04:15:48 | INFO     | src.output.json_generator:save_geojson:291 - Saved GeoJSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840548.geojson
+2025-12-16 04:15:51 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840548_annotated.png
+2025-12-16 04:15:54 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840548_heatmap.png
+2025-12-16 04:15:54 | INFO     | src.pipeline:analyze_zipcode:306 - Analysis complete for 75201: 16 roofs, 4 damages, 109.3s
+2025-12-16 04:15:56 | ERROR    | mvp_email:send_damage_report_email:177 - Failed to send email: (534, b'5.7.9 Application-specific password required. For more information, go to\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor ffacd0b85a97d-42fa8b9b750sm31251306f8f.42 - gsmtp')
+2025-12-16 04:15:56 | INFO     | src.detection.base_detector:unload_model:192 - RoofDetector model unloaded
+2025-12-16 04:15:57 | INFO     | src.detection.base_detector:unload_model:192 - DamageDetector model unloaded
+2025-12-16 04:15:57 | INFO     | src.pipeline:close:151 - Pipeline closed
+2025-12-16 04:21:25 | INFO     | src.pipeline:__init__:92 - RoofDamagePipeline created
+2025-12-16 04:21:25 | INFO     | src.pipeline:_initialize:99 - Initializing pipeline components...
+2025-12-16 04:21:25 | INFO     | src.detection.base_detector:__init__:62 - RoofDetector initialized (device: cpu)
+2025-12-16 04:21:25 | INFO     | src.detection.base_detector:__init__:62 - DamageDetector initialized (device: cpu)
+2025-12-16 04:21:25 | INFO     | src.pipeline:_initialize:137 - Pipeline initialized
+2025-12-16 04:21:25 | INFO     | src.image_ingestion.geocoder:geocode_zipcode:157 - Geocoded 75201: center=(32.7904, -96.8044)
+2025-12-16 04:21:25 | WARNING  | src.image_ingestion.image_fetcher:calculate_tile_grid:174 - Area too large (2832048 tiles). Limiting to 500 tiles for accuracy. Consider using a smaller zipcode or area.
+2025-12-16 04:21:25 | INFO     | src.image_ingestion.image_fetcher:calculate_tile_grid:185 - Tile grid: 14x33 = 462 tiles (zoom=21, no overlap)
+2025-12-16 04:21:25 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:318 - Fetching 462 tiles...
+2025-12-16 04:21:31 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:347 - Successfully fetched 462/462 tiles
+2025-12-16 04:21:31 | INFO     | src.image_ingestion.image_stitcher:stitch:141 - Scaling output by 0.97x to 8192x3475
+2025-12-16 04:21:31 | INFO     | src.image_ingestion.image_stitcher:stitch:144 - Creating canvas: 8192x3475
+2025-12-16 04:21:33 | INFO     | src.image_ingestion.image_stitcher:stitch:200 - Placed 462/462 tiles
+2025-12-16 04:21:33 | INFO     | src.detection.roof_detector:detect:307 - Large image (8192x3475), processing in 1280x1280 chunks
+2025-12-16 04:21:33 | INFO     | src.detection.roof_detector:_load_model:114 - Loading roof detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\roof_detector.pt
+2025-12-16 04:21:33 | INFO     | src.detection.roof_detector:_load_model:126 - Roof detection model loaded on cpu
+2025-12-16 04:21:52 | INFO     | src.detection.roof_detector:detect:379 - Detected 16 roofs after chunk processing
+2025-12-16 04:21:52 | INFO     | src.detection.damage_detector:_load_model:161 - Loading damage detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\damage_detector.pt
+2025-12-16 04:21:52 | INFO     | src.detection.damage_detector:_load_model:170 - Damage detection model loaded on cpu
+2025-12-16 04:21:54 | INFO     | src.output.json_generator:create_result:273 - Generated result for 75201: 16 roofs, 4 damages
+2025-12-16 04:21:54 | INFO     | src.output.json_generator:save_json:284 - Saved JSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840914.json
+2025-12-16 04:21:54 | INFO     | src.output.json_generator:save_geojson:291 - Saved GeoJSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840914.geojson
+2025-12-16 04:21:56 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840914_annotated.png
+2025-12-16 04:21:59 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765840914_heatmap.png
+2025-12-16 04:21:59 | INFO     | src.pipeline:analyze_zipcode:306 - Analysis complete for 75201: 16 roofs, 4 damages, 29.3s
+2025-12-16 04:22:23 | INFO     | mvp_email:send_damage_report_email:175 - Email sent successfully to aliyanew16@gmail.com
+2025-12-16 04:22:23 | INFO     | src.detection.base_detector:unload_model:192 - RoofDetector model unloaded
+2025-12-16 04:22:23 | INFO     | src.detection.base_detector:unload_model:192 - DamageDetector model unloaded
+2025-12-16 04:22:23 | INFO     | src.pipeline:close:151 - Pipeline closed
+2025-12-16 04:25:09 | INFO     | src.pipeline:__init__:92 - RoofDamagePipeline created
+2025-12-16 04:25:09 | INFO     | src.pipeline:_initialize:99 - Initializing pipeline components...
+2025-12-16 04:25:09 | INFO     | src.detection.base_detector:__init__:62 - RoofDetector initialized (device: cpu)
+2025-12-16 04:25:09 | INFO     | src.detection.base_detector:__init__:62 - DamageDetector initialized (device: cpu)
+2025-12-16 04:25:09 | INFO     | src.pipeline:_initialize:137 - Pipeline initialized
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.geocoder:geocode_zipcode:157 - Geocoded 75201: center=(32.7904, -96.8044)
+2025-12-16 04:25:09 | WARNING  | src.image_ingestion.image_fetcher:calculate_tile_grid:174 - Area too large (2832048 tiles). Limiting to 500 tiles for accuracy. Consider using a smaller zipcode or area.
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.image_fetcher:calculate_tile_grid:185 - Tile grid: 14x33 = 462 tiles (zoom=21, no overlap)
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:318 - Fetching 462 tiles...
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.image_fetcher:fetch_tiles:347 - Successfully fetched 462/462 tiles
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.image_stitcher:stitch:141 - Scaling output by 0.97x to 8192x3475
+2025-12-16 04:25:09 | INFO     | src.image_ingestion.image_stitcher:stitch:144 - Creating canvas: 8192x3475
+2025-12-16 04:25:11 | INFO     | src.image_ingestion.image_stitcher:stitch:200 - Placed 462/462 tiles
+2025-12-16 04:25:11 | INFO     | src.detection.roof_detector:detect:307 - Large image (8192x3475), processing in 1280x1280 chunks
+2025-12-16 04:25:11 | INFO     | src.detection.roof_detector:_load_model:114 - Loading roof detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\roof_detector.pt
+2025-12-16 04:25:11 | INFO     | src.detection.roof_detector:_load_model:126 - Roof detection model loaded on cpu
+2025-12-16 04:25:30 | INFO     | src.detection.roof_detector:detect:379 - Detected 16 roofs after chunk processing
+2025-12-16 04:25:30 | INFO     | src.detection.damage_detector:_load_model:161 - Loading damage detection model: E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\models\damage_detector.pt
+2025-12-16 04:25:31 | INFO     | src.detection.damage_detector:_load_model:170 - Damage detection model loaded on cpu
+2025-12-16 04:25:32 | INFO     | src.output.json_generator:create_result:273 - Generated result for 75201: 16 roofs, 4 damages
+2025-12-16 04:25:32 | INFO     | src.output.json_generator:save_json:284 - Saved JSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765841132.json
+2025-12-16 04:25:32 | INFO     | src.output.json_generator:save_geojson:291 - Saved GeoJSON result to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765841132.geojson
+2025-12-16 04:25:35 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765841132_annotated.png
+2025-12-16 04:25:38 | INFO     | src.output.visualizer:save:404 - Saved visualization to E:\Upwork_pro_Yolo\AI_Roof_Damage_Detection\output\75201_1765841132_heatmap.png
+2025-12-16 04:25:38 | INFO     | src.pipeline:analyze_zipcode:306 - Analysis complete for 75201: 16 roofs, 4 damages, 23.5s
+2025-12-16 04:26:01 | INFO     | mvp_email:send_damage_report_email:175 - Email sent successfully to aliyannew16@gmail.com
+2025-12-16 04:26:01 | INFO     | src.detection.base_detector:unload_model:192 - RoofDetector model unloaded
+2025-12-16 04:26:01 | INFO     | src.detection.base_detector:unload_model:192 - DamageDetector model unloaded
+2025-12-16 04:26:01 | INFO     | src.pipeline:close:151 - Pipeline closed

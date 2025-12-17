@@ -1,0 +1,6 @@
+# Core dependencies (imported from parent project)
+# Make sure AI_Roof_Damage_Detection is in Python path
+
+# Email
+# SMTP is built-in, no extra packages needed
+
