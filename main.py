@@ -15,6 +15,12 @@ from collections import defaultdict
 parent_dir = Path(__file__).parent.parent / "AI_Roof_Damage_Detection"
 parent_dir = parent_dir.resolve()  # Resolve to absolute path
 
+# Check if parent directory exists
+if not parent_dir.exists():
+    print(f"ERROR: AI_Roof_Damage_Detection directory not found at: {parent_dir}")
+    print("Please ensure AI_Roof_Damage_Detection folder exists in the parent directory.")
+    sys.exit(1)
+
 # Add parent directory to Python path FIRST (before any imports)
 if str(parent_dir) not in sys.path:
     sys.path.insert(0, str(parent_dir))
@@ -25,7 +31,11 @@ if str(current_dir) not in sys.path:
     sys.path.insert(0, str(current_dir))
 
 # Change working directory to parent for relative imports
-os.chdir(str(parent_dir))
+try:
+    os.chdir(str(parent_dir))
+except Exception as e:
+    print(f"WARNING: Could not change directory to {parent_dir}: {e}")
+    print("Continuing with current directory...")
 
 # Load .env from production project BEFORE importing settings
 from dotenv import load_dotenv
@@ -215,35 +225,33 @@ async def analyze_and_email_per_property(
             # Calculate costs for this roof's damages only
             roof_costs = calculate_repair_costs(result, damages=roof_damages)
             
-            # Randomly pick an email from the list
-            if not email_list:
-                recipient_email = "aliyannew16@gmail.com"  # Default fallback
-            else:
-                recipient_email = random.choice(email_list)
-            
-            print(f"\n📧 Sending email for Roof #{roof_id} to: {recipient_email}")
+            print(f"\n📧 Sending emails for Roof #{roof_id}")
             print(f"   - {len(roof_damages)} damage(s) detected")
             print(f"   - Total damage area: {roof_result.total_damage_area_pixels} pixels")
             print(f"   - Estimated cost: ${roof_costs.total_cost:,.2f}")
             
-            # Send email for this specific roof
-            success = send_damage_report_email(
-                recipient_email=recipient_email,
-                zipcode=zipcode,
-                result=roof_result,
-                costs=roof_costs,
-                annotated_image_path=annotated_file,
-                heatmap_path=heatmap_file,
-                roof_info="",  # Will be generated in email template
-                json_file_path=json_file
-            )
-            
-            if success:
-                print(f"   ✅ Email sent successfully!")
-                emails_sent += 1
-            else:
-                print(f"   ❌ Failed to send email")
-                emails_failed += 1
+            # Send email to ALL recipients in the list (both emails for MVP)
+            for recipient_email in email_list:
+                print(f"   → Sending to: {recipient_email}")
+                
+                # Send email for this specific roof to this recipient
+                success = send_damage_report_email(
+                    recipient_email=recipient_email,
+                    zipcode=zipcode,
+                    result=roof_result,
+                    costs=roof_costs,
+                    annotated_image_path=annotated_file,
+                    heatmap_path=heatmap_file,
+                    roof_info="",  # Will be generated in email template
+                    json_file_path=json_file
+                )
+                
+                if success:
+                    print(f"      ✅ Email sent successfully!")
+                    emails_sent += 1
+                else:
+                    print(f"      ❌ Failed to send email")
+                    emails_failed += 1
         
         print(f"\n📊 Email Summary:")
         print(f"   ✅ Successfully sent: {emails_sent}")
@@ -262,14 +270,18 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python main.py <zipcode> [email1] [email2] [email3] ...")
         print("Example: python main.py 75201 owner1@example.com owner2@example.com")
-        print("Example: python main.py 75201  # Uses default email")
+        print("Example: python main.py 75201  # Uses default emails")
         print("\nNote: Emails are randomly assigned to properties with damage.")
-        print("      If no emails provided, uses default: aliyannew16@gmail.com")
+        print("      Each damaged property gets a separate email.")
+        print("      Default emails: aliyannew16@gmail.com, Josecarlos@gpoutsourcing.com")
         sys.exit(1)
     
     zipcode = sys.argv[1]
     
     # Get email list from command line arguments
+    # Default emails (always included for MVP)
+    default_emails = ["aliyannew16@gmail.com", "Josecarlos@gpoutsourcing.com"]
+    
     email_list = []
     if len(sys.argv) > 2:
         email_list = sys.argv[2:]
@@ -277,8 +289,10 @@ if __name__ == "__main__":
         for i, email in enumerate(email_list, 1):
             print(f"   {i}. {email}")
     else:
-        print("⚠️  No emails provided, will use default: aliyannew16@gmail.com")
-        email_list = ["aliyannew16@gmail.com"]
+        print("📧 Using default emails for MVP:")
+        for i, email in enumerate(default_emails, 1):
+            print(f"   {i}. {email}")
+        email_list = default_emails
     
     asyncio.run(analyze_and_email_per_property(zipcode, email_list))
 
