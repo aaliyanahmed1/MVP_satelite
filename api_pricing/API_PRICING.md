@@ -1,6 +1,6 @@
-# API Pricing & Usage Plan for MVP
+# API Pricing & Usage Plan 
 
-## APIs Required for MVP
+## APIs Required 
 
 ### 1. MapTiler API (Satellite Imagery)
 - **Website:** [https://www.maptiler.com](https://www.maptiler.com)
